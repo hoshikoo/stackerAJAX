@@ -16,11 +16,11 @@
 	width: 200px;
 	height: 200px;
 	-webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  margin-right: 1em;
-  border-radius: 5px;
+	  -moz-background-size: cover;
+	  -o-background-size: cover;
+	  background-size: cover;
+	  margin-right: 1em;
+	  border-radius: 5px;
 }
 
 .intro {
@@ -34,12 +34,23 @@
 	margin-left: 3em;
 }
 
+.results{
+	color:red;
+	font: 24px bold;
+}
 .result {
 	border: 1px solid black;
+	border-radius: 10px;
 	padding: 5px;
 	margin: 0 auto 1em auto;
+	color: black;
+	font-size: 18px;
 }
 
+.answererPic{
+	float: right;
+	margin:20px;
+}
 .error {
 	background-color: #F78181;
 	padding: 1em;
