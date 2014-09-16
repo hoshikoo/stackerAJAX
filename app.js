@@ -13,6 +13,7 @@ $(document).ready( function() {
 		// get the value of the tags the user submitted
 		var answerers = $(this).find("input[name='answerers']").val();
 		getTopAnsweres(answerers);
+	    // $('.results').each(function(){ $(this).append($(this).index()) });
 	});
 });
 
@@ -95,8 +96,6 @@ var getUnanswered = function(tags) {
 		var errorElem = showError(error);
 		$('.search-results').append(errorElem);
 	});
-
-
 };
 
 
@@ -105,24 +104,32 @@ var showAnswerer = function(answerers) {
 	// clone our result template code
 	var result = $('.templates .top-answerer').clone();
 	
+
 	// Set the answerer name properties in result
 	var answererElem = result.find('.answerer-name a');
 	answererElem.attr('href', answerers.user.link);
 	answererElem.text(answerers.user.display_name);
 
+	var pic = result.find('.answererPic');
+	pic.attr('src', answerers.user.profile_image);
+
+
+
 	// set the post count property in result
-	var count = result.find('.post-count');
+	var count = result.find('.post_count');
 	count.text(answerers.post_count);
 
 	// set the reputation property in result
 	var reputation = result.find('.reputation');
-	reputation.text(answerers.reputation);
+	reputation.text(answerers.user.reputation);
 
 	// set the score property in result
 	var score = result.find('.score');
 	score.text(answerers.score);
 
+	console.log(result);
 	return result;
+
 };
 
 
@@ -136,6 +143,7 @@ var getTopAnsweres = function(tags) {
 	var result = $.ajax({
 		url: "http://api.stackexchange.com/2.2/tags/"+tags+"/top-answerers/all_time",
 		dataType: "jsonp",
+		data: request,
 		type: "GET",
 		})
 
@@ -146,6 +154,8 @@ var getTopAnsweres = function(tags) {
 
 		$.each(result.items, function(i, item) {
 			var answerer= showAnswerer(item);
+			var num = i +1;
+			$('.results').append(num);
 			$('.results').append(answerer);
 		});
 	})
